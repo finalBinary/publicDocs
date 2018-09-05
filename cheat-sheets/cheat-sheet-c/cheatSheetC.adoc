@@ -1,0 +1,22 @@
+== Cheat Sheet C ==
+
+=== Praktikums Konventionen ===
+Zuerst muss natürlich das Programm angegeben werden, danach sollen die Optionen
+in alphabetischer Reihenfolge (Klein-/Großschreibung nicht beachten!) genannt
+werden und zum Schluss die Inputdateien in alphabetischer Reihenfolge.
+
+Beispiel: `gcc -m32 -o program -std=c99 -Wall first.c second.c`
+
+Erklärung: gcc als Programm zuerst, danach die Optionen (m < o < s < W),
+danach die Inputdateien (f < s).
+
+=== Unit Tests: ===
+
+*checkmk compilieren:*
+
+`checkmk basic_complete.ts > basic_complete.c`
+
+
+*program mit tests compilieren:*
+
+`gcc program.c program_test.c -o beispiel_tests -Wall -std=c99 -g -fprofile-arcs -ftest-coverage -pthread -lcheck -lrt -lm -lsubunit`
