@@ -1,0 +1,9 @@
++---------------------------+
+| Rücksprungadresse (zu C)  |
++---------------------------+
+| gesicherter EBP           | <- aktueller EBP
++---------------------------+
+| gesicherte Register       |
++---------------------------+
+| 5 (push eax)              | <- aktueller ESP
++---------------------------+

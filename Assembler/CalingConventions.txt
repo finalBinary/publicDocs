@@ -1,0 +1,32 @@
+- Code will be invoked with a CALL instruction and return via a RET.
+
+- Parameters are pushed onto the stack before the CALL instruction.
+  If the parameter’s size is less than a double
+  word, it must be converted to a double word before being pushed (dword).
+
+- A subprogram first saves the value of EBP on the stack and then set EBP to be equal to ESP.
+
+- Local variables are stored right after the saved EBP value in the stack
+  (allocated by: sub esp, LOCAL_BYTES ; = # bytes needed by locals).
+
+- At the end of the subprogram, the original value of EBP must be restored
+
+- The caller of a subprogram must remove the parameters that were pushed on the stack.
+
+- Results are stored in eax
+
+
+; enter x, 0
+push ebp ; save original EBP value on stack
+mov ebp, esp ; new EBP = ESP
+sub esp, LOCAL_BYTES ; = # bytes needed by locals
+
+; leave
+mov esp, ebp ; deallocate locals
+pop ebp ; restore original EBP value
+ret
+
+
+
+
+
