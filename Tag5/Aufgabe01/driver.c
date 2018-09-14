@@ -1,18 +1,12 @@
 #include <stdio.h>
-/* prototype for assembly routine */
-void print_char_array( int , char *) __attribute__((cdecl ));
+
+int secret_func( int ) __attribute__((cdecl));
 
 int main( void )
 {
 	int n = 5;
-	//char array[5] = {'a', 'b', 'c', 'd', 'e'};
-	char * array = "fooB!";
-
-	printf ("Array is :\n");
+	int result = secret_func(n);
 	
-	print_char_array(n, array);
-
-	printf ("\n");
+	printf ("%d\n", result);
 	return 0;
-
 }

@@ -1,18 +1,16 @@
 execName = start
-asmFileName = main
+#asmFileName = main
+cMainFileName = main
+testName = toUpper_tests
 
-$(execName): driver.o $(asmFileName).o asm_io.o
-	gcc -m32 -o $(execName) -std=c99 -Wall asm_io.o driver.c $(asmFileName).o
+$(execName): $(cMainFileName).o 
+	gcc -m32 -std=c99 -o $(execName) -std=c99 -Wall $(cMainFileName).o
 
-driver.o: driver.c $(asmFileName).o
-	gcc -m32 -c driver.c
+$(cMainFileName).o: $(cMainFileName).c 
+	gcc -m32 -c -std=c99 $(cMainFileName).c
 
-$(asmFileName).o: $(asmFileName).asm asm_io.o
-	nasm -f elf $(asmFileName).asm
-
-asm_io.o:
-	nasm -f elf -d ELF_TYPE asm_io.asm
+test:
+	gcc $(cMainFileName).c $(testName).c -o $(testName) -Wall -std=c99 -g -fprofile-arcs -ftest-coverage -pthread -lcheck -lrt -lm -lsubunit
 
 clean:
 	rm *.o $(execName)
-

@@ -2,164 +2,177 @@
 #include <string.h>
 #include "most_frequent2.h"
 
+void extract_noraml_words(char *source, char *extracted);
+void extract_and_rplace_specials(char *source, char *extracted);
+void initialize_to_empty(char *wordArray);
+int count_and_assign_words(int *count, char * toCount, int offset);
+int chrIsInArray(char toCheck, char *array);
+int strIsInWordsArray(char *toCheck);
+void normalize_space(char *string);
 
+#define MAX_CHARS  80
 
-int isInArray(char toCheck, char *array);
-int strIsInArray(char *toCheck);
-int count_words(int *);
-char allWords[80][81];
+/*
+ *main is commented out for tests
+ */
+/*int main(){
+    int count[MAX_CHARS] = {0};
+    char input[MAX_CHARS+1];
 
-
-int main(){
-    int count[80];
-    char input[81];
-    //int foo = 0;
-
-    printf("Enter a text (max. 80 characters): \n");
-    fgets(input, 81, stdin);
+    printf("Enter a text (max. %d characters): \n", MAX_CHARS);
+    fgets(input, MAX_CHARS+1, stdin);
     input[strcspn(input, "\n")] = '\0'; // remove trailing newline
     
     int number_of_words = extract_and_count(input, count);
-    //count_words(count);
+    printf("NR of Word: %d\n", number_of_words);
     
     print(number_of_words, count);
     
-    printf("++++++++++++++++++++++++++++\n");
-    printf("%d\n", number_of_words);
-    printf("++++++++++++++++++++++++++++\n");
-    printf("%s, %d\n", words[0], count[0]);
-	printf("%s, %d\n", words[1], count[1]);
-	printf("%s, %d\n", words[2], count[2]);
-	printf("%s, %d\n", words[3], count[3]);
-	printf("%s, %d\n", words[4], count[4]);
-	printf("%s, %d\n", words[5], count[5]);
-	printf("%s, %d\n", words[6], count[6]);
-	printf("%s, %d\n", words[7], count[7]);
 
     return 0;
-}
+}*/
 
 
 int extract_and_count(char *source,  int *count){
-	
-	char specials[] = {' ', '!', '?',','};
-	char *	lastCopiedPtr = source;
-	int wordIndex = 0;
-	int firstRead = 0;
-	
-	for(int i = 0; i < strlen(source); i++){
-		//printf("==> ");
-		//printf("%c\n", source[i]);
 		
-		
-		if (isInArray(source[i], specials) == 1 && firstRead == 1){
-			int ptrPos = lastCopiedPtr - source; // position of ptr in word
-			/*printf("last copied: %s\n", lastCopiedPtr);
-			printf("%d\n", ptrPos);
-			printf("%d\n", i);*/
+	char foundWords[MAX_CHARS][MAX_CHARS+1]; //normal words are stored here
+	char foundSpecials[MAX_CHARS][MAX_CHARS+1]; //special chars are stored here
 
-			/*copy if next element is not an special*/
-			if(ptrPos != i){
-				strncpy(allWords[wordIndex], lastCopiedPtr, i-ptrPos); 
-				lastCopiedPtr = lastCopiedPtr + (i-ptrPos);
-				//printf("copied word: %s\n", allWords[wordIndex]);
-				wordIndex ++;
-			}
-			
-		
-			/*copy special if not space*/
-			if(*lastCopiedPtr != ' ' && lastCopiedPtr < (source + (strlen(source)-1)) ){
-				strncpy(allWords[wordIndex], lastCopiedPtr, 1);
-				//printf("copied special: %s\n", allWords[wordIndex]);
-				wordIndex ++;
-			}
-			
-			lastCopiedPtr++;
-			
-		/* if first special not found dont read*/	
-		} else if (isInArray(source[i], specials) == 1 && firstRead == 0) {
-			firstRead = 1;
-			strncpy(allWords[wordIndex], lastCopiedPtr + i, 1);
-			wordIndex ++;
-			lastCopiedPtr = lastCopiedPtr + i +1;
-		}
-		//printf("=============== \n");
-	}
-	
-	/*Copy last word if not yet copied and last char is special*/
-	if(lastCopiedPtr < (source + (strlen(source)-1)) && isInArray(*(source + strlen(source)-1), specials)){
-		//printf("last copy\n");
-		//int foo =  (source + strlen(source)) - lastCopiedPtr;
-		//strncpy(allWords[wordIndex], lastCopiedPtr, foo);
-		strcpy(allWords[wordIndex], (source + strlen(source)-1));
-		wordIndex ++;
-	}
-	
-	
-	printf("%s\n", allWords[0]);
-	printf("%s\n", allWords[1]);
-	printf("%s\n", allWords[2]);
-	printf("%s\n", allWords[3]);
-	printf("%s\n", allWords[4]);
-	printf("%s\n", allWords[5]);
-	printf("%s\n", allWords[6]);
-	printf("%s\n", allWords[7]);
-	printf("%s\n", allWords[8]);
-	printf("%s\n", allWords[9]);
-	printf("%s\n", allWords[10]);
-	printf("%s\n", allWords[11]);
-	printf("%s\n", allWords[12]);
-	printf("%s\n", allWords[13]);
-	printf("%s\n", allWords[14]);
-	
-	int nrWords = count_words(count);
-	
-	return nrWords;
+	/* initializing to a defined state */
+	initialize_to_empty(foundWords[0]);
+	initialize_to_empty(foundSpecials[0]);
+
+	/* extract special characters and words from input string */
+	extract_and_rplace_specials(source, foundSpecials[0]);
+	extract_noraml_words(source, foundWords[0]);
+
+	/* count special characters and words */
+	int nrOfWords = count_and_assign_words(count, foundWords[0], 0);
+	nrOfWords = count_and_assign_words(count, foundSpecials[0], nrOfWords);
+
+	return nrOfWords;
 }
 
-int count_words(int *count){
-	int index = 0;
-	for(int i =0; i<80; i++){
-		if(strIsInArray(allWords[i]) == -1){
-			strcpy(words[index], allWords[i]); 
-			*(count + index) = 1;
-			index ++;
-		}
-		else{
-			
-			;count[strIsInArray(allWords[i])]++;
-		}
-	}
-	return index + 1;
-}
 
 void print(int diff_words, int *count){
 	int index = get_most_frequent_word(diff_words, count);
-	printf("%s\n", allWords[index]);
+	printf("%s\n", words[index]);
 }
 
+
 int get_most_frequent_word(int number_of_words, int *count){
-	//int index = 0;
 	int maxNr = 0;
+	int index = 0;
+
 	for(int i = 0; i < number_of_words; i++) {
 		if(*(count + i) > maxNr){
+			index = i;
 			maxNr = *(count +i);
 		}
 	}
 	
-	return maxNr;
+	return index;
 }
 
-int isInArray(char toCheck, char *array){
+/*
+ * splits a string by single white spaces, these strings are added to
+ * the storage array 'extracted'
+ */
+void extract_noraml_words(char *source, char *extracted){
+	char spacer[] = " ";
+	char *currentWordPtr = strtok(source, spacer); // splitt by white space
+
+	int index = 0; // marks position in extracted
+	while(currentWordPtr != NULL) {
+		strcpy( (extracted+index*(MAX_CHARS+1)), currentWordPtr);
+		currentWordPtr = strtok(NULL, spacer); // move 'currentWordPtr' to next word
+		index++;
+	}
+}
+
+/*
+ * loops through string, if a special character is found it is added to
+ * the storage array 'extracted', and the special character gets replaced
+ * by a space
+ */
+void extract_and_rplace_specials(char *source, char *extracted){
+	char specials[] = {'!', '?',',', '.'};
+
+	int index = 0; // marks position in extracted
+	for(int i = 0; i < strlen(source); i++){
+		/* if char is a special character */
+		if(chrIsInArray( *(source+i), specials)) {
+			strncpy( (extracted+index*(MAX_CHARS+1)), (source+i), 1); // add to extracted
+			*(source+i) = ' '; // replace by white space
+			index++;
+		}
+	}
+}
+
+/*
+ * fills a 2-D array with '\0' to have a defined state
+ */
+void initialize_to_empty(char *wordArray){
+	for(int i = 0; i < MAX_CHARS; i++){
+		*(wordArray+i*(MAX_CHARS+1)) = '\0';
+	}
+}
+
+
+/*
+ * loops through string array and assigns unique words to the global words array
+ * also counts the unique words
+ */
+int count_and_assign_words(int *count, char * toCount, int offset){
+	int index = offset;
+	for(int i =0; i<MAX_CHARS; i++){
+		/* if word is not yet in the words array*/
+		if(*(toCount+i*(MAX_CHARS+1)) != '\0'
+			&& strIsInWordsArray( (toCount+i*(MAX_CHARS+1)) ) == -1){
+
+			strcpy(words[index], (toCount+i*(MAX_CHARS+1)) ); // add word to words array
+			*(count + index) = 1; // ad new entry of one to count array
+			index ++;
+		}
+		/* else word is already in the words array*/
+		else{
+			
+			count[strIsInWordsArray( (toCount+i*(MAX_CHARS+1)) )]++; // increment the count
+		}
+	}
+	return index;
+}
+
+/*
+ * checks if a given char is in an given char array
+ */
+int chrIsInArray(char toCheck, char *array){
 	for(int i = 0; i < strlen(array); i++){
 		if(toCheck == array[i]) return 1;
 	}
 	return 0;
 }
 
-int strIsInArray(char *toCheck){
-	for(int i = 0; i < 80; i++){
+/*
+ * checks if a given string is in the global words array
+ */
+int strIsInWordsArray(char *toCheck){
+	for(int i = 0; i < MAX_CHARS; i++){
 		if(strcmp(toCheck, words[i]) == 0) return i;
 	}
 	return -1;
+}
+
+/*
+ * reduces all multiple spaces to one
+ */
+void normalize_space(char *string){
+	int i = 0;
+	while(string[i] != '\0'){
+		if(string[i] == ' ' && string[i+1] == ' '){
+			memmove(string+i, string+i+1, strlen(string+i+1)+1);
+		} else {
+			i++;
+		}
+	}
 }

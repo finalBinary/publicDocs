@@ -1,5 +1,5 @@
 execName = start
-asmFileName = main
+asmFileName = secret
 
 $(execName): driver.o $(asmFileName).o asm_io.o
 	gcc -m32 -o $(execName) -std=c99 -Wall asm_io.o driver.c $(asmFileName).o
