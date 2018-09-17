@@ -20,3 +20,42 @@ danach die Inputdateien (f < s).
 *program mit tests compilieren:*
 
 `gcc program.c program_test.c -o beispiel_tests -Wall -std=c99 -g -fprofile-arcs -ftest-coverage -pthread -lcheck -lrt -lm -lsubunit`
+
+
+=== Umleitungen ===
+
+Umleitung der Standardeingabe mit : `programm < datei`
+
+Umleitung der Standardausgabe mit : `programm > datei`
+
+Umleitung der Standardfehlerausgabe mit : `programm 2> datei`
+
+Standardausgabe von Programm1 auf Standardeingabe von Programm2
+umleiten: Pipe: `Programm2 | Programm1`
+
+Datenstrom erstellen:
+`FILE  *strom = fopen("datei.txt", modus)`
+Die Modi sind:
+
+- w: Write
+- r: Read
+- a: Attach
+
+Datenstrom schließen: `fclose(strom);`
+
+Sicheres Öffnen einer Datei:
+
+[source, c]
+----
+FILE *in;
+if (!(in = fopen("dont_exist.txt", "r"))) {
+  fprintf(stderr, "Kann die Datei nicht öffnen.\n");
+  return 1;
+}
+----
+
+=== Grep ===
+
+Get digits ending with comma:
+
+`grep -oP "(\d+)(?=,)" student2.csv `

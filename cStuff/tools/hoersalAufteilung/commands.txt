@@ -1,0 +1,5 @@
+gcc -m32 -o start -std=c99 -Wall main.c
+
+grep -oP "(\d+)(?=,)" student2.csv | ./start stdin H1.csv 5 H2.csv 3
+
+./studentFilter -i 70 -n 20 -v | grep -oP "(2\d+)(?=,)" | ./start stdin H1.csv 5 H2.csv 3
