@@ -80,4 +80,4 @@ Usefule GDB commands:
 - `print *arr@len`: print an array
 - `watch variable`: watch variable for changes
 - `step`: go into functio that is caled
-- `backtrace full`: tels what functions have been caled
+

@@ -1,0 +1,14 @@
+Preprocessor:
+- Removes comments
+- replaces includes with code
+- replaces macros with code
+
+Compiler:
+- generates assemply code from c source code comming from the preprocessor.
+
+Assembler:
+- converts assembly code to binary code (object code)
+
+Linker:
+- links libary functions to the code
+- combines multiple object files to a single executable file

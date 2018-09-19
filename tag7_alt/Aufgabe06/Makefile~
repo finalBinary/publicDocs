@@ -1,0 +1,13 @@
+execName = start
+mainFileName = main
+
+$(execName): $(mainFileName).o
+	gcc -m32 -o $(execName) -std=c99 -Wall $(mainFileName).c
+
+$(mainFileName).o: $(mainFileName).c
+	gcc -m32 -c -std=c99 $(mainFileName).c
+
+
+clean:
+	rm *.o $(execName)
+
