@@ -24,6 +24,14 @@ danach die Inputdateien (f < s).
 
 `gcc program.c program_test.c -o beispiel_tests -Wall -std=c99 -g -fprofile-arcs -ftest-coverage -pthread -lcheck -lrt -lm -lsubunit`
 
+Mit coverage:
+
+`gcc seperable.c seperable_tests.c -o tests -Wall -lm -lpthread -lrt -lcheck -lsubunit -Wall -std=c99 -g -fprofile-arcs -ftest-coverage`
+
+gcov seperable.c
+
+ergebnis in  seperable.c.gcov
+
 
 === Umleitungen ===
 
