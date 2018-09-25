@@ -1,0 +1,38 @@
+Alle Tiere:
+ ***********************************************
+ *  Lassie ist ein ein Collie (Hund).
+ *  Sein/Ihr Geburtstag ist am 17.12.1938
+ ***********************************************
+ *  Hachiko ist ein ein Akita (Hund).
+ *  Sein/Ihr Geburtstag ist am 10.11.1923
+ ***********************************************
+ *  Snuppy ist ein ein Windhund (Hund).
+ *  Sein/Ihr Geburtstag ist am 24. 4.2005
+ ***********************************************
+ *  Barry ist ein ein Bernhardiner (Hund).
+ *  Sein/Ihr Geburtstag ist am  1. 1.1800
+ ***********************************************
+ *  Bobbie ist ein ein Collie (Hund).
+ *  Sein/Ihr Geburtstag ist am  2. 2.1923
+ ***********************************************
+ *  Snoopie ist ein ein Beagle (Hund).
+ *  Sein/Ihr Geburtstag ist am  2.10.1950
+ ***********************************************
+ *  AirBuddy ist ein ein GoldenRetriever (Hund).
+ *  Sein/Ihr Geburtstag ist am  4. 4.1988
+ ***********************************************
+ *  Simon ist ein ein Hauskatze (Katze).
+ *  Sein/Ihr Geburtstag ist am  4. 4.2008
+ ***********************************************
+ *  Beethoven ist ein ein Bernhardiner (Hund).
+ *  Sein/Ihr Geburtstag ist am  5. 5.1992
+ ***********************************************
+ *  Idefix ist ein ein Mischling (Hund).
+ *  Sein/Ihr Geburtstag ist am  6. 6.1963
+ ***********************************************
+
+Das älteste Tier ist: 
+ ***********************************************
+ *  Barry ist ein ein Bernhardiner (Hund).
+ *  Sein/Ihr Geburtstag ist am  1. 1.1800
+ ***********************************************
