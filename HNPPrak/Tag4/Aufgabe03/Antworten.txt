@@ -1,0 +1,156 @@
+a)
+
+int function calc(int n){
+	if(ebx == 1){
+		return 1;
+	} else {
+		return calc(n-1) + n/2
+	}
+}
+
+b)
+
+pusha, popa vergessen
+
+Die C-Conventions erwarten das die Register:
+EBX, ESI, EDI, EBP, CS, DS, SS, ES
+nach aufruf einer funktion mit call, unverändert sind.
+
+
+c)
+
++---------------------------+
+| Rücksprungadresse (zu C)  |
++---------------------------+
+| gesicherter EBP           | <- aktueller EBP
++---------------------------+
+| gesicherte Register       |
++---------------------------+
+| 3 (push eax)              | <- aktueller ESP
++---------------------------+
+
+
+
++---------------------------+
+| Rücksprungadresse (zu C)  |
++---------------------------+
+| gesicherter EBP           | 
++---------------------------+
+| gesicherte Register       |
++---------------------------+
+| 		3 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	| <- aktueller EBP
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			| <- aktueller ESP: die gesicherten Register: ESI, EDI, EBP, CS, DS, SS, ES
++---------------------------+
+
++---------------------------+
+| Rücksprungadresse (zu C)  |
++---------------------------+
+| gesicherter EBP           | 
++---------------------------+
+| gesicherte Register       |
++---------------------------+
+| 		3 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	|
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			| 
++---------------------------+
+| 		2 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	| <- aktueller EBP
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			| <- aktueller ESP: die gesicherten Register: ESI, EDI, EBP, CS, DS, SS, ES
++---------------------------+
+
++---------------------------+
+| Rücksprungadresse (zu C)  |
++---------------------------+
+| gesicherter EBP           | 
++---------------------------+
+| gesicherte Register       |
++---------------------------+
+| 		3 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	|
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			| 
++---------------------------+
+| 		2 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	| 
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			|
++---------------------------+
+| 		1 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	| <- aktueller EBP
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			| <- aktueller ESP: die gesicherten Register: ESI, EDI, EBP, CS, DS, SS, ES
++---------------------------+
+
+
+
++---------------------------+
+| Rücksprungadresse (zu C)  |
++---------------------------+
+| gesicherter EBP           | 
++---------------------------+
+| gesicherte Register       |
++---------------------------+
+| 		3 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	|
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			| 
++---------------------------+
+| 		2 (push eax)        | 
++---------------------------+
+|    Rücksprungadresse    	|
++---------------------------+
+| 		gesicherter EBP 	| <-- aktueller EBP
++---------------------------+
+|	   locale var			|
++---------------------------+
+|        pusha    			| <- aktueller ESP: die gesicherten Register: ESI, EDI, EBP, CS, DS, SS, ES
++---------------------------+
+
+
+
++---------------------------+
+| Rücksprungadresse (zu C)  |
++---------------------------+
+| gesicherter EBP           | <- aktueller EBP
++---------------------------+
+| gesicherte Register       | <- aktueller ESP: die gesicherten Register: ESI, EDI, EBP, CS, DS, SS, ES
++---------------------------+

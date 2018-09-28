@@ -1,0 +1,6 @@
+Die funktion berechnet:
+
+int n secret_func(int n){
+	if(n == 1) return 1;
+	return secret_func(n-1) * n;
+}

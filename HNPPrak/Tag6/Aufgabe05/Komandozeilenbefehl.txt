@@ -1,0 +1,1 @@
+./haltbar -o 3 30 < Lebensmittel.csv | grep -oP ".*[Kk]irsch.*" | ./regalFill stdin  R1.csv 13 R2.csv 8

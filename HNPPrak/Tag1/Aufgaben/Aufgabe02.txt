@@ -1,0 +1,7 @@
+1. Ein Gleich bei der Initialisierung von b zu viel.
+
+2. Ein gleich zu wenig beim Vergleich.
+
+3. Semikolon hinter break fehlt.
+
+4. += oder =+ statt b= +2. Also z.B. Whitspace zu viel.

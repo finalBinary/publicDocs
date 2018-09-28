@@ -1,0 +1,5 @@
+
+Das Overflow-Flag wird gesetzt, sobald eine Zahl zu groß für die gewählte darstellung wird
+(z.B. für 32bit signed −2147483648 bis +2147483647) und somit "überläuft".
+Bei vorzeichenbehafteten Zahlen kann so das Vorzeichen-Bit verändert werden und
+somit unerwertete Ergebnisse liefern.

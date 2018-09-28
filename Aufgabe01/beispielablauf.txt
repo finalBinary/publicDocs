@@ -1,0 +1,46 @@
+$ make neustart
+gcc dungeon.c -Wall -std=c99 -g 
+Sicherheitskopie erstellen...
+...done
+Spielstand zurücksetzen...
+...done
+$ ./guck
+Du befindest Dich im Raum 'Zelle'.
+Dies ist Deine Heimatzelle. Dein Zuhause weg von zuhause. Traute Zelle, glück allein! Urlaub mit viel frischer Luft! Im Norden ist die Zellentür, der theoretische und praktische Limes Deiner Bewegungsfunktion.
+Du schaust Dich um und siehst:
+	 Im Norden siehst Du:   Zellentrakt
+	 Im Süden siehst Du:    Wand
+	 Im Westen siehst Du:   Wand
+	 Im Osten siehst Du:    Wand
+Du siehst hier folgende Gegenstände:
+	Hammer Meissel Zettel 
+$ ./inv
+In Deinen Taschen findest Du nur ein wenig Dreck.
+$ ./n
+Um diesen Raum zu betreten benötigst Du eine(n) Hammer.
+$ ./nimm Hammer
+Du nimmst eine(n) Hammer.
+$ ./nimm Hammer
+Dieser Gegenstand ist bereits in Deinen Taschen!
+$ ./n
+Du öffnest die Tür durch brutale Hammereinwirkung!
+Du verlässt den Raum 'Zelle' in Richtung Norden und betritts nun den Raum 'Zellentrakt'.
+golov@kueppers:~/info2/c-praktikum/Tag8/Dateien/Dungeon/Janine_L$ ./inv
+In Deinen Taschen findest Du:
+	Hammer
+$ ./guck
+Du befindest Dich im Raum 'Zellentrakt'.
+Dieser Gang verbindet zwanzig gleichartige Zellen von der Art Deines eigenen Kerkergemachs. Die anderen sind leer oder ,,freigeworden''. Etwas Helligkeit scheint von Osten herein.
+Du schaust Dich um und siehst:
+	 Im Norden siehst Du:   Wand
+	 Im Süden siehst Du:    Zelle
+	 Im Westen siehst Du:   Wand
+	 Im Osten siehst Du:    Rundgang
+Du siehst hier folgende Gegenstände:
+	
+$ ./n
+Im Norden läufst  Du vor eine Wand. AUA!
+$ ./nimm Hose
+Du kannst nichts nehmen, was es nicht gibt!
+$ ./o
+Du verlässt den Raum 'Zellentrakt' in Richtung Osten und betritts nun den Raum 'Rundgang'.

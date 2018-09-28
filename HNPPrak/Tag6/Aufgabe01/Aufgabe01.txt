@@ -1,0 +1,7 @@
+1. 2 * Pointer (*) vergessen
+2. argc ist immer 0 also falsche abfrage
+3. && zu ||
+4. w zu a in  das fopen des outputfiles
+5. kein & für wort in fscanf
+6. nur zahl kein pointer für fprintf
+7. fclose schliest nur eine datei auf einmal
